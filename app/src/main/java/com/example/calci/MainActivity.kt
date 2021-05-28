@@ -10,7 +10,7 @@ import kotlin.properties.Delegates
 class MainActivity : AppCompatActivity() {
     lateinit var resultView: TextView
     lateinit var inputView: TextView
-    private var operand by Delegates.notNull<Char>()
+    private var operator by Delegates.notNull<Char>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,8 +23,8 @@ class MainActivity : AppCompatActivity() {
     fun clickListener(button: View) {
         when (button.id) {
             R.id.equal_to_button -> {
-                val (num1, num2) = inputView.text.split(operand).map { it.toDouble() }
-                when (operand) {
+                val (num1, num2) = inputView.text.split(operator).map { it.toDouble() }
+                when (operator) {
                     '+' -> resultView.text = (num1 + num2).toString()
                     '-' -> resultView.text = (num1 - num2).toString()
                     '*' -> resultView.text = (num1 * num2).toString()
@@ -40,24 +40,24 @@ class MainActivity : AppCompatActivity() {
                 inputView.text = inputView.text.dropLast(1)
             }
             R.id.plus_button -> {
-                operand = '+'
-                inputView.text = inputView.text.toString() + operand
+                operator = '+'
+                inputView.text = inputView.text.toString() + operator
             }
             R.id.minus_button -> {
-                operand = '-'
-                inputView.text = inputView.text.toString() + operand
+                operator = '-'
+                inputView.text = inputView.text.toString() + operator
             }
             R.id.multiply_button -> {
-                operand = '*'
-                inputView.text = inputView.text.toString() + operand
+                operator = '*'
+                inputView.text = inputView.text.toString() + operator
             }
             R.id.divide_button -> {
-                operand = '/'
-                inputView.text = inputView.text.toString() + operand
+                operator = '/'
+                inputView.text = inputView.text.toString() + operator
             }
             R.id.modulus_button -> {
-                operand = '%'
-                inputView.text = inputView.text.toString() + operand
+                operator = '%'
+                inputView.text = inputView.text.toString() + operator
             }
             else -> inputView.text = inputView.text.toString() + button.tag
         }
